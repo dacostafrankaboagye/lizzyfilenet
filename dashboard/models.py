@@ -10,12 +10,12 @@ MYFILETYPES = (
     ('other', 'other'),
 )
 
-color_code = {
-    'pdf'   : 'danger',
-    'image' : 'primary',
-    'audio' : 'warning',
-    'video' : 'success',
-    'other' : 'primary'
+the_code = {
+    'pdf'   : ('danger','bi-file-earmark-play'),
+    'image' : ('primary', 'bi-images'),
+    'audio' : ('warning', 'bi-file-earmark-music'),
+    'video' : ('success', 'bi-file-earmark-play'),
+    'other' : ('primary', 'bi-file-earmark')
 }
 
 class MyFileManager(models.Model):
@@ -30,7 +30,10 @@ class MyFileManager(models.Model):
         return self.file_name
     
     def get_color_code(self):
-        return color_code[self.file_type]
+        return the_code[self.file_type][0]
+    
+    def get_icon(self):
+        return the_code[self.file_type][1]
     
     class Meta:
         ordering = ('-file_upload_date',)

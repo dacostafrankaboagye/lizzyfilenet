@@ -1,21 +1,14 @@
 
-
 {% extends 'base/base.html' %}
 
 {% block title %} Dashboard  {% endblock %}
 
+
 {% block content %} 
 
+{% include 'base/nav.html' %}
+
 <br><br>
-
-
-
-
-
-
-
-
-
 
 <div class="container">
 
@@ -24,7 +17,7 @@
 
             <div class="col-lg-4 col-md-6 my-2">
                 <div class="card shadow">                
-                    <span class='text-{{ the_file.get_color_code }} display-1 ms-2'><i class="bi bi-images"></i></span>
+                    <span class='text-{{ the_file.get_color_code }} display-1 ms-2'><i class="bi {{ the_file.get_icon }}"></i></span>
                     <div class="card-body">
                         <h4 class="card-title">{{ the_file.file_name }} </h4>
                         <p class="card-text"> {{ the_file.file_description }} </p>
@@ -46,12 +39,7 @@
                 </div>
             </div>
 
-        {% endfor %}
-
-
-
-        
-        
+        {% endfor %}          
 
     </div>
         

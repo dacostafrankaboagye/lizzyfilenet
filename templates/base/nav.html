@@ -1,7 +1,8 @@
 
 {% load static %}
 
-
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
 
   <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary "  data-bs-theme='dark'>
@@ -51,7 +52,16 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span class='text-info'><i class="bi bi-person"></i></span>
-              {{ user.username }}
+              <!-- {% if user.email %}
+                {{ user.email }}
+              {% elif user.username %}
+                {{ user.username }}
+              {% else %}
+                YourName
+              {% endif %} -->
+
+              {{ user.email }}
+
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Profile Page</a></li>

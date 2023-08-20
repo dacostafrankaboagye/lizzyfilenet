@@ -1,0 +1,90 @@
+
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %} Sign Up Page {% endblock %}
+
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/users/style.css' %}">
+
+
+
+
+<div class="wrapper ab">
+    <div class="container main">
+        <div class="row">
+
+            <div class="col-md-6  side-image">
+                <!-- Image -->
+                <!-- <img src="{% static '/images/filetransfer.jpg' %}" alt=""> -->
+                <!-- <div class="text">
+                    <p>Join the Community of developers <i>lucid flex </i></p>
+                </div> -->
+
+                <div class="container">
+                    <img class="img-fluid theImg" src="{% static '/images/biglizzylogo.PNG' %}" alt="">
+                </div>
+                
+            </div>
+
+            <div class="col-md-6 right">
+                <form method="POST" action=".">
+
+                    {% csrf_token %}
+
+                    <div class="input-box">
+                        <header>create account</header>
+                        <!-- <div class="input-field">
+                             <input type="text" class="input" id="email" required autocomplete="off"> 
+                            {{ form.username }}
+                            <label for="email"> <i class="bi bi-person-fill"></i> Username </label>
+                        </div> -->
+
+                        <div class="input-field">
+                            <!-- <input type="text" class="input" id="email" required autocomplete="off"> -->
+                            {{ form.email }}
+                            <label for="email"> <i class="bi bi-envelope-fill"></i> Email</label>
+                        </div>
+
+                        <div class="input-field">
+                            <!-- <input type="password" class="input" id="password" required> -->
+                            {{ form.password1 }}
+                            <label for="password1"> <i class="bi bi-shield-lock-fill"></i> Password</label>
+                        </div>
+
+                        <div class="input-field">
+                            <!-- <input type="password" class="input" id="password" required> -->
+                            {{ form.password2 }}
+                            <label for="password2"> <i class="bi bi-shield-lock-fill"></i> Confirm Password</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="submit" class="submit" value="signup">
+                            
+                        </div>
+
+                        <div class="signin">
+                            <span class="okay">Already have an Account? 
+                                <a href="#">Log In here</a>
+                            </span>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
