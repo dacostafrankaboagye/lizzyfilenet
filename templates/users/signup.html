@@ -15,7 +15,12 @@
 
 
 <div class="wrapper ab">
+    {% include 'base/messaging.html' %}
+
     <div class="container main">
+
+        
+
         <div class="row">
 
             <div class="col-md-6  side-image">
@@ -44,6 +49,10 @@
                             <label for="email"> <i class="bi bi-person-fill"></i> Username </label>
                         </div> -->
 
+                      
+                        
+                       
+
                         <div class="input-field">
                             <!-- <input type="text" class="input" id="email" required autocomplete="off"> -->
                             {{ form.email }}
@@ -61,14 +70,15 @@
                             {{ form.password2 }}
                             <label for="password2"> <i class="bi bi-shield-lock-fill"></i> Confirm Password</label>
                         </div>
+
                         <div class="input-field">
-                            <input type="submit" class="submit" value="signup">
+                            <input type="submit" class="submit" value="register">
                             
                         </div>
 
                         <div class="signin">
                             <span class="okay">Already have an Account? 
-                                <a href="#">Log In here</a>
+                                <a href="{% url 'login' %}">Log In here</a>
                             </span>
                         </div>
 

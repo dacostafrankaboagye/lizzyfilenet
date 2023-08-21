@@ -1,11 +1,14 @@
+
+
+
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+from django.contrib.auth import get_user_model
 
-class SignUpForm(UserCreationForm):
+#from django.contrib.auth.models import User
 
-  
+class UserRegisterationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs.update({
@@ -30,27 +33,45 @@ class SignUpForm(UserCreationForm):
             'id': 'password2',
             'required': '',
         })
+
+
+    username = forms.CharField( required=False)
+    email = forms.EmailField(required=True)
     
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ['email', 'password1', 'password2']
 
-    
     def save(self, commit=True):
-        user = super(SignUpForm, self).save(commit=False)
+        user = super(UserRegisterationForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
-        user.username = self.cleaned_data['email']
+        user.username = self.cleaned_data['email'] 
         if commit:
             user.save()
         return user
 
-'''
-self.fields["username"].widget.attrs.update({
+
+
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs.update({
             'name': 'username',
             'type': 'text',
             'class': 'input',
             'id': 'username',
+            'required': '',
         })
+        self.fields["password"].widget.attrs.update({
+            'name': 'password',
+            'type': 'password',
+            'class': 'input',
+            'id': 'password',
+            'required': '',
+        })
+        
 
-'''
+
+
+

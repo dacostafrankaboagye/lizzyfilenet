@@ -1,47 +1,74 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponse, render, redirect
 
-from .forms import SignUpForm
+from django.contrib.auth import get_user_model, login, logout, authenticate
+from .forms import UserRegisterationForm, UserLoginForm
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 
-from django.contrib.auth import authenticate, login
 
 
-def signup(request):
 
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
+
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            
-            #instance.username = 'the_default_user'
-            
             login(request=request, user=user)
+            messages.success(request=request, message=f'new account created for { user.email }')
             return redirect('dashboard-index')
-            # theEmail = form.cleaned_data.get("email")
-            # thePassword1 = form.cleaned_data.get("password1")
-            # thePassword2 = form.cleaned_data.get("password2")
-            #form.save()
-            # new_user = authenticate(
-            #     username='', 
-            #     email=theEmail, 
-            #     password=thePassword1
-            # )
-            # if new_user is not None:
-            #     login(request=request, user=new_user)
-            #     return redirect('dashboard-index')
-            # else:
-            #     return HttpResponse(' new user is none ')
         else:
-            return HttpResponse(" form is not valid")
+            # allerror = ''
+            for error in list(form.errors.values()): 
+                # print(request, error)
+                # allerror = allerror + error + "---"
+                messages.error(request, error)
+                
+            # return HttpResponse(allerror) 
+    else:
+        form = UserRegisterationForm()
 
-   
-    form = SignUpForm()
-
-    context = {
-        'form': form,
-    }
     return render(
         request=request,
         template_name='users/signup.html',
-        context=context,
+        context={'form': form}
     )
+
+
+
+
+def custom_logout(request):
+    logout(request=request)
+    return render(request, template_name='users/logout.html')
+
+
+def custom_login(request):
+
+    if request.method == 'POST':
+        #form  = AuthenticationForm(request=request, data=request.POST)
+        form  = UserLoginForm(request=request, data=request.POST)
+        
+        if form.is_valid():
+            user = authenticate(
+                username = form.cleaned_data['username'],
+                password = form.cleaned_data['password'],
+            )
+            if user is not None:
+                login(request=request, user=user)
+                messages.success(request=request, message=f"Hello <b>{ user.username }</b>!. You have been logged in ")
+                return redirect('dashboard-index')
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+
+
+    
+    form = UserLoginForm()
+
+    return render(
+        request=request,
+        template_name='users/login.html',
+        context={'form': form}
+    )
+
+

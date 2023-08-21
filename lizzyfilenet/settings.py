@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # added apps
     'dashboard.apps.DashboardConfig',
-    'users.apps.UsersConfig',
-    
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+LOGIN_REDIRECT_URL = 'dashboard-index'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,6 +127,7 @@ STATIC_URL = 'static/'
 
 # ----- added
 
+
 STATIC_ROOT = (BASE_DIR / 'asset')
 
 STATICFILES_DIRS = [
@@ -131,6 +136,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' 
+
+AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
 
 
 # Default primary key field type
