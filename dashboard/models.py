@@ -20,7 +20,7 @@ the_code = {
 
 class MyFileManager(models.Model):
     file_name = models.CharField(max_length=200, default="File", blank=False)  # title
-    file_description = models.TextField(default='This is a File', max_length=600, blank=False) # description
+    file_description = models.TextField(default='This is a File', max_length=200, blank=False) # description
     file_type = models.CharField(max_length=20, choices=MYFILETYPES)
     my_file = models.FileField(upload_to="all_files")
     ids = models.AutoField(primary_key=True)

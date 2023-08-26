@@ -3,47 +3,50 @@
 
 {% block title %} Dashboard  {% endblock %}
 
-
 {% block content %} 
+ <!-- base/messaging.html -->
+ 
+ 
 
-{% include 'base/nav.html' %}
+ <div class="container">
 
-<br><br>
-{% include 'base/messaging.html' %}
+            <div class="row my-5">
+                {% for the_file in the_files %}
 
-<div class="container">
+                    <div class="col-lg-4 col-md-6 my-2">
+                        <div class="card shadow">                
+                            <span class='text-{{ the_file.get_color_code }} display-1 ms-2'><i class="bi {{ the_file.get_icon }}"></i></span>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ the_file.file_name }} </h4>
+                                <p class="card-text"> {{ the_file.file_description }} </p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <ul class="nav justify-content-center">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="bi bi-eye-fill"></i> Preview</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="bi bi-cloud-arrow-down-fill"></i> Download
+                                        <span> 6 </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"> <i class="bi bi-share-fill"></i> Share
+                                            <span> 12 </span>
+                                        </a>
+                                    </li>
 
-    <div class="row my-5">
-        {% for the_file in the_files %}
 
-            <div class="col-lg-4 col-md-6 my-2">
-                <div class="card shadow">                
-                    <span class='text-{{ the_file.get_color_code }} display-1 ms-2'><i class="bi {{ the_file.get_icon }}"></i></span>
-                    <div class="card-body">
-                        <h4 class="card-title">{{ the_file.file_name }} </h4>
-                        <p class="card-text"> {{ the_file.file_description }} </p>
+
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        <ul class="nav justify-content-center">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> <i class="bi bi-eye-fill"></i> Preview</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> <i class="bi bi-cloud-arrow-down-fill"></i> Download</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> <i class="bi bi-share-fill"></i> Share</a>
-                            </li>
 
-                        </ul>
-                    </div>
-                </div>
+                {% endfor %}          
+
             </div>
-
-        {% endfor %}          
-
-    </div>
-        
+                
 </div>
 
 {% endblock %}

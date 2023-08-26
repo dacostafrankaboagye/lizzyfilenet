@@ -6,7 +6,9 @@
 
     
 
-  <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary "  data-bs-theme='dark'>
+
+
+  <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary"  data-bs-theme='dark'>
     <div class="container ">
       <a class="navbar-brand" href="#">
           
@@ -69,7 +71,7 @@
 
               <!-- only for the admin  -->
               {% if user.is_authenticated and user.is_staff and user.is_superuser %}
-              <li><a class="dropdown-item" href="#">Admin Panel</a></li>
+              <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
               {% endif %}
 
             </ul>
@@ -86,7 +88,6 @@
       </div>
     </div>
   </nav>
-
   <nav class="navbar-second navbar bg-body-tertiary shadow ">
       <div class="container-fluid justify-content-end">
         <form class="d-flex" role="search">
@@ -95,6 +96,7 @@
         </form>
       </div>
   </nav>
+
 
 
     

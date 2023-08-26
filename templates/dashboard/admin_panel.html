@@ -1,0 +1,258 @@
+
+{% extends 'base/base_bootstrap.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Admin Panel {% endblock %}
+
+{% block content %} 
+
+<nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary sticky-top"  data-bs-theme='dark'>
+<div class="container ">
+    <a class="navbar-brand" href="#">
+        
+        <img src="{% static '/images/lizzylogo.PNG' %}" alt="" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
+
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav-underline navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard-index' %}">
+            <span class='text-primary'><i class="bi bi-file"></i></span>
+            View Site
+        </a>
+        </li>
+    </ul>
+    
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class='text-info'><i class="bi bi-person"></i></span>
+            {{ user.email }}
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Profile Page</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+
+            <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
+
+        </ul>
+        </li>
+        <li class="nav-item"> 
+            
+            <a class="nav-link" href="#">
+                <span class='text-info'><i class="bi bi-question-circle"></i></span>
+                Help
+            </a>
+        </li>
+    <ul>
+
+    </div>
+
+</div>
+</nav>
+
+<br>
+
+<div class='container'>
+
+            <div class="card">
+                <div class="card-header bg-secondary  text-white">
+                    Statistics
+                </div>
+                <div class="card-body">
+                
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="#">
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                        <h4> <span><i class="bi bi-card-list"></i></span> Files </h4>
+                                        <h3>9</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="#">
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                        <h4> <span><i class="bi bi-cloud-download"></i></span> Downloads
+                                        <h3>10</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="#">
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                        <h4> <span> <i class="bi bi-envelope"></i> </span> Emails </h4>
+                                        <h3>3</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+</div>
+
+<div class='container'>
+    <div class="row">
+        <div class="col-md-4 mt-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white  ">
+                    Upload
+                </div>
+                <div class="card-body">
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy  }}
+                        <input class="btn btn-primary" type="submit" value="Upload">
+                    </form>
+
+                </div>
+            </div>
+          
+        </div>
+        
+        <div class="col-md-8 mt-4">
+            <div class="card">
+                <div class="card-header bg-secondary  text-white">
+                    Statistics
+                </div>
+                <div class="card-body">
+                
+                    <table class="table table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col"> File name </th>
+                        <th scope="col"> Number of Downloads </th>
+                        <th scope="col"> Number of Emails sent </th>
+                        <th scope="col"> Upload Date </th>
+                        <th scope="col"> Change </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> textFile </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td> 20/ 4/ 2000 </td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+                        
+
+
+                    </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+{% endblock %}

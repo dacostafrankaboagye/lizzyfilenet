@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # added apps
     'dashboard.apps.DashboardConfig',
     'users',
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -138,6 +140,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' 
 
 AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 
 # Default primary key field type
