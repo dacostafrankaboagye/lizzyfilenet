@@ -1,1 +1,2 @@
 - fix messages
+- sequence diagram

@@ -73,5 +73,13 @@ class UserLoginForm(AuthenticationForm):
         
 
 
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = get_user_model()
+        fields = ['username','email', 'profilePicture']
+
+
 
 

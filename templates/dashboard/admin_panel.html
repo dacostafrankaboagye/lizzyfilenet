@@ -11,9 +11,9 @@
 
 <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary sticky-top"  data-bs-theme='dark'>
 <div class="container ">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{% url 'dashboard-index' %}">
         
-        <img src="{% static '/images/lizzylogo.PNG' %}" alt="" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
+        <img src="{% static '/images/lizzylogo.PNG' %}" alt="logo" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
 
     </a>
 
@@ -34,7 +34,7 @@
             {{ user.email }}
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Profile Page</a></li>
+            <li><a class="dropdown-item" href="{% url 'profilepage' %}">Profile Page</a></li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
 
             <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
@@ -134,113 +134,28 @@
                     <thead>
                         <tr>
                         <th scope="col"> File name </th>
-                        <th scope="col"> Number of Downloads </th>
-                        <th scope="col"> Number of Emails sent </th>
+                        <th scope="col"> No of Downloads </th>
+                        <th scope="col"> No of Emails sent </th>
                         <th scope="col"> Upload Date </th>
                         <th scope="col"> Change </th>
                         </tr>
                     </thead>
                     <tbody>
+
+                        {% for the_file in the_files %}
+
                         <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
+                            <td> {{ the_file.file_name }} </td>
+                            <td> 10 </td>
+                            <td> 10 </td>
+                            <td> {{the_file.file_upload_date}} </td>
                             <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                                <a class="btn btn-info btn-sm" href="{% url 'file_update' the_file.ids %}">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'file_delete' the_file.ids %}">Delete</a>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> textFile </td>
-                            <td> 5 </td>
-                            <td> 2 </td>
-                            <td> 20/ 4/ 2000 </td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
-                            </td>
-                        </tr>
-                        
-
+                        {% endfor %}
 
                     </tbody>
                     </table>

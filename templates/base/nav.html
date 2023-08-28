@@ -10,9 +10,9 @@
 
   <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary"  data-bs-theme='dark'>
     <div class="container ">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{% url 'dashboard-index' %}">
           
-          <img src="{% static '/images/lizzylogo.PNG' %}" alt="" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
+          <img src="{% static '/images/lizzylogo.PNG' %}" alt="logo" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
 
       </a>
       <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@
 
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Profile Page</a></li>
+              <li><a class="dropdown-item" href="{% url 'profilepage' %}">Profile Page</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
 
               <!-- only for the admin  -->
