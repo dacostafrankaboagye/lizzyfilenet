@@ -1,114 +1,85 @@
 
 {% load static %}
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
-    
-
-
-
-  <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary"  data-bs-theme='dark'>
-    <div class="container ">
-      <a class="navbar-brand" href="{% url 'dashboard-index' %}">
-          
-          <img src="{% static '/images/lizzylogo.PNG' %}" alt="logo" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
-
-      </a>
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"> </span>
-      </button> -->
-   
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav-underline navbar-nav m-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span class='text-danger'><i class="bi bi-filetype-pdf"></i></span>
-              PDF
+<nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary"  data-bs-theme='dark'>
+  <div class="container ">
+    <a class="navbar-brand" href="{% url 'dashboard-index' %}">
+        <img src="{% static '/images/lizzylogo.PNG' %}" alt="logo" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
+    </a>  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav-underline navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'specificFiles_all' %}">
+            <span ><i class="bi bi-folder"></i></span>
+            ALL
+        </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'specificFiles_pdf' %}">
+            <span class='text-danger'><i class="bi bi-filetype-pdf"></i></span>
+            Pdf
+        </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'specificFiles_image' %}">
+            <span class='text-primary'><i class="bi bi-images"></i></span>
+            Image
+        </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'specificFiles_audio' %}">
+            <span class='text-warning'><i class="bi bi-file-earmark-music"></i></span>
+            Audio
+        </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'specificFiles_video' %}">
+            <span class='text-success'><i class="bi bi-file-earmark-play"></i></span>
+            Video
+        </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'specificFiles_other' %}">
+            <span class='text'><i class="bi bi-file"></i></span>
+            Others
+        </a>
+        </li>        
+      </ul>    
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class='text-info'><i class="bi bi-person"></i></span>
+            {{ user.email }}
           </a>
-          </li>
-          <li class="nav-item">
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profilepage' %}">Profile Page</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+
+            <!-- only for the admin  -->
+            {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+            <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
+            {% endif %}
+
+          </ul>
+        </li>
+        <li class="nav-item">             
             <a class="nav-link" href="#">
-              <span class='text-primary'><i class="bi bi-images"></i></span>
-              Images
-          </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span class='text-warning'><i class="bi bi-file-earmark-music"></i></span>
-              Audio
-          </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span class='text-success'><i class="bi bi-file-earmark-play"></i></span>
-              Video
-          </a>
-          </li> 
-          
-        </ul>
-      
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class='text-info'><i class="bi bi-person"></i></span>
-              <!-- {% if user.email %}
-                {{ user.email }}
-              {% elif user.username %}
-                {{ user.username }}
-              {% else %}
-                YourName
-              {% endif %} -->
-
-              {{ user.email }}
-
+                <span class='text-info'><i class="bi bi-question-circle"></i></span>
+                Help
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'profilepage' %}">Profile Page</a></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-
-              <!-- only for the admin  -->
-              {% if user.is_authenticated and user.is_staff and user.is_superuser %}
-              <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
-              {% endif %}
-
-            </ul>
-          </li>
-          <li class="nav-item"> 
-              
-              <a class="nav-link" href="#">
-                  <span class='text-info'><i class="bi bi-question-circle"></i></span>
-                  Help
-              </a>
-          </li>
-        <ul>
-
-      </div>
+        </li>
+      <ul>
     </div>
-  </nav>
-  <nav class="navbar-second navbar bg-body-tertiary shadow ">
-      <div class="container-fluid justify-content-end">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-  </nav>
-
-
-
-    
-  
-  
-
-
-
-
-
-
- 
-
-
-
+  </div>
+</nav>
+<nav class="navbar-second navbar bg-body-tertiary shadow ">
+    <div class="container-fluid justify-content-end">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+</nav>

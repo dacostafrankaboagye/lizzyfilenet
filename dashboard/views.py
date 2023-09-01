@@ -19,6 +19,23 @@ def index(request):
         context=context
     )
 
+def specificFiles(request):
+    the_files = MyFileManager.objects.all()
+    theUrl = request.build_absolute_uri()
+    urlFileType = theUrl.split('/')[-2]  # getting the specific
+    context = {
+        'the_files': the_files,
+        'urlFileType': urlFileType,
+
+    }
+    
+    return render(
+        request=request,
+        template_name='dashboard/theTester.html',
+        context = context,
+
+    )
+
 @login_required
 def admin_panel(request):
     the_files = MyFileManager.objects.all()

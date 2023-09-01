@@ -1,2 +1,4 @@
-- fix messages
-- sequence diagram
+
+- worked on the specificFiles page and the seeing of the numbers - downloads and share
+- yet to do the imppementation on the numbers
+
