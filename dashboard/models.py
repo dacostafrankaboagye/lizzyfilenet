@@ -1,3 +1,5 @@
+
+
 from django.db import models
 
 
@@ -17,6 +19,10 @@ the_code = {
     'video' : ('success', 'bi-file-earmark-play'),
     'other' : ('primary', 'bi-file-earmark')
 }
+
+
+    
+
 
 class MyFileManager(models.Model):
     file_name = models.CharField(max_length=200, default="File", blank=False)  # title

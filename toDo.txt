@@ -1,4 +1,13 @@
+test@gmail.com
+test12345
 
-- worked on the specificFiles page and the seeing of the numbers - downloads and share
 - yet to do the imppementation on the numbers
+- account verification 
+- reset password feature
+- download imppementation ============= done
+- fix search ============================= done
+- preview files 
+- send file through email
+- fix delete
+
 

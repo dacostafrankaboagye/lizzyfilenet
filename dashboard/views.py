@@ -6,12 +6,23 @@ from .forms import MyFileManagerForm
 
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
+
 
 @login_required
 def index(request):
-    the_files = MyFileManager.objects.all()
+    
+    if 'q' in request.GET:
+        q = request.GET['q']
+        the_files = MyFileManager.objects.filter(file_name__icontains=q)
+        # multiple_q = Q(Q(first_name__icontains=q) | Q(last_name__icontains=q)  )
+        # the_files = MyFileManager.objects.filter(multiple_q)
+    else:
+        the_files = MyFileManager.objects.all()
+
     context = {
         'the_files': the_files,
+        'urlFileType': "all",
     }
     return render(
         request=request,
@@ -19,21 +30,25 @@ def index(request):
         context=context
     )
 
+@login_required
 def specificFiles(request):
-    the_files = MyFileManager.objects.all()
+    if 'q' in request.GET:
+        q = request.GET['q']
+        the_files = MyFileManager.objects.filter(file_name__icontains=q)
+    else:
+        the_files = MyFileManager.objects.all()
+
+    
     theUrl = request.build_absolute_uri()
     urlFileType = theUrl.split('/')[-2]  # getting the specific
     context = {
         'the_files': the_files,
         'urlFileType': urlFileType,
-
     }
-    
     return render(
         request=request,
-        template_name='dashboard/theTester.html',
+        template_name='dashboard/index.html',
         context = context,
-
     )
 
 @login_required
@@ -56,6 +71,7 @@ def admin_panel(request):
         context=context
     )
 
+@login_required
 def file_delete(request, pk):
     the_file = MyFileManager.objects.get(ids=pk)
     if request.method == 'POST':
@@ -71,6 +87,7 @@ def file_delete(request, pk):
         context=context,
     )
 
+@login_required
 def file_update(request, pk):
     the_file = MyFileManager.objects.get(ids=pk)
     if request.method == 'POST':
@@ -80,7 +97,6 @@ def file_update(request, pk):
             return redirect('admin_panel')
     else:
         form  = MyFileManagerForm(instance=the_file)
-        
         
     context = {
         'form': form,
