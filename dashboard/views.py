@@ -3,11 +3,10 @@ from django.shortcuts import render, redirect
 # code
 from .models import  MyFileManager
 from .forms import MyFileManagerForm
-
 from django.contrib.auth.decorators import login_required
-
 from django.db.models import Q
-
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 @login_required
 def index(request):
@@ -106,3 +105,23 @@ def file_update(request, pk):
         template_name='dashboard/file_update.html',
         context=context,
     )
+
+@login_required
+def preview(request, pk):
+    the_file = MyFileManager.objects.get(ids=pk)
+
+    if the_file.file_type == 'pdf':
+        return HttpResponseRedirect(the_file.my_file.url)
+
+
+    context = {
+        'the_file': the_file,
+    }
+
+    return render(
+        request=request,
+        template_name='dashboard/preview.html',
+        context=context,
+    )
+
+

@@ -22,8 +22,9 @@
                         <div class="card-footer text-muted">
                             <ul class="nav justify-content-center">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"> <i class="bi bi-eye-fill"></i> Preview </a>
+                                    <a class="nav-link" href="{% url 'preview' the_file.ids %}"> <i class="bi bi-eye-fill"></i> Preview </a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{the_file.my_file.url}}" download> <i class="bi bi-cloud-arrow-down-fill"></i> Download
                                         {% if user.is_authenticated and user.is_staff and user.is_superuser %}

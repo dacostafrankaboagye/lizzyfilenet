@@ -1,0 +1,96 @@
+
+{% extends 'base/base_bootstrap.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Preview Page {% endblock %}
+
+{% block content %}
+
+
+<nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary"  data-bs-theme='dark'>
+    <div class="container ">
+      <a class="navbar-brand" href="{% url 'dashboard-index' %}">
+          
+          <img src="{% static '/images/lizzylogo.PNG' %}" alt="logo" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
+
+      </a>
+   
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class='text-info'><i class="bi bi-person"></i></span>
+              {{ user.email }}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'profilepage' %}">Profile Page</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+              <!-- only for the admin  -->
+              {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+              <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
+              {% endif %}
+
+            </ul>
+          </li>
+          <li class="nav-item"> 
+              
+              <a class="nav-link" href="#">
+                  <span class='text-info'><i class="bi bi-question-circle"></i></span>
+                  Help
+              </a>
+          </li>
+        <ul>
+
+      </div>
+    </div>
+</nav>
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                       
+                    {% if the_file.file_type == 'pdf'%}
+                        <iframe src="{{ the_file.my_file.url }}" frameborder="0"></iframe>
+                        <br>
+                        <a class="btn btn-secondary" href="{{ the_file.my_file.url }}">open</a>
+                        {% elif the_file.file_type == 'image' %}
+                        <img src="{{ the_file.my_file.url }}" alt="{{ the_file.file_name }}">
+                        {% elif the_file.file_type == 'audio' %}
+                        <audio controls>
+                            <source src="{{ the_file.my_file.url }}" type="audio/mpeg">
+                        </audio>
+                        {% elif the_file.file_type == 'video' %}
+                        <video controls width="auto" height="500px">
+                            <source src="{{ the_file.my_file.url }}" type="video/mp4">   
+                        </video>
+                        {% elif the_file.file_type == 'other' %}
+                            <embed src="{{ the_file.my_file.url }}" >
+                        {% else %}
+                        <p>Unsupported file type.</p>
+                       
+                    {% endif %}                      
+                        
+                        <a class="btn btn-secondary mt-5" href="{% url 'dashboard-index' %}">Go Back</a>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+

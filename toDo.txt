@@ -6,8 +6,8 @@ test12345
 - reset password feature
 - download imppementation ============= done
 - fix search ============================= done
-- preview files 
+- preview files ============ done *pdf
 - send file through email
-- fix delete
+- fix delete(clear all files)
 
 

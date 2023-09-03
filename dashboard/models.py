@@ -13,7 +13,7 @@ MYFILETYPES = (
 )
 
 the_code = {
-    'pdf'   : ('danger','bi-file-earmark-play'),
+    'pdf'   : ('danger',  'bi-filetype-pdf'),
     'image' : ('primary', 'bi-images'),
     'audio' : ('warning', 'bi-file-earmark-music'),
     'video' : ('success', 'bi-file-earmark-play'),

@@ -16,5 +16,7 @@ urlpatterns = [
     path('specificFiles/video/', views.specificFiles, name="specificFiles_video" ),
     path('specificFiles/other/', views.specificFiles, name="specificFiles_other" ),
 
+    path('preview/<pk>/', views.preview, name="preview"),
+
     
 ]

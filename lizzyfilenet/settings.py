@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-u%dml-*hjx95a_9%06g+-+2-w)59y8@8#)xuw#4ujynl4)ayd_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    
+]
 
 
 # Application definition
@@ -146,6 +148,7 @@ AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 
 
