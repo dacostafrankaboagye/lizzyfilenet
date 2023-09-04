@@ -57,8 +57,6 @@
                     <div class="row">
                        
                     {% if the_file.file_type == 'pdf'%}
-                        <iframe src="{{ the_file.my_file.url }}" frameborder="0"></iframe>
-                        <br>
                         <a class="btn btn-secondary" href="{{ the_file.my_file.url }}">open</a>
                         {% elif the_file.file_type == 'image' %}
                         <img src="{{ the_file.my_file.url }}" alt="{{ the_file.file_name }}">
@@ -71,9 +69,10 @@
                             <source src="{{ the_file.my_file.url }}" type="video/mp4">   
                         </video>
                         {% elif the_file.file_type == 'other' %}
-                            <embed src="{{ the_file.my_file.url }}" >
+                            <!-- <embed src="{{ the_file.my_file.url }}" > -->
+                            <a class="btn btn-secondary" href="{{ the_file.my_file.url }}">open</a>
                         {% else %}
-                        <p>Unsupported file type.</p>
+                        
                        
                     {% endif %}                      
                         

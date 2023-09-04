@@ -1,0 +1,12 @@
+
+{% autoescape off %}
+Hii {{ user.email }},
+
+Click the link below to confirm your registration:
+
+{{ protocol }}://{{ domain }}{% url 'activateEmail' uidb64=uid token=token %}
+
+Sincerely,
+Lizzy File Net
+
+{% endautoescape %}

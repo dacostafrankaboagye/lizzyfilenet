@@ -110,7 +110,7 @@ def file_update(request, pk):
 def preview(request, pk):
     the_file = MyFileManager.objects.get(ids=pk)
 
-    if the_file.file_type == 'pdf':
+    if the_file.file_type == 'pdf' or the_file.file_type == 'other':
         return HttpResponseRedirect(the_file.my_file.url)
 
 

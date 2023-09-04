@@ -2,7 +2,7 @@
 
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm
 
 from django.contrib.auth import get_user_model
 
@@ -52,7 +52,6 @@ class UserRegisterationForm(UserCreationForm):
         return user
 
 
-
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
@@ -72,7 +71,6 @@ class UserLoginForm(AuthenticationForm):
         })
         
 
-
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
@@ -82,4 +80,74 @@ class UserUpdateForm(forms.ModelForm):
 
 
 
+# class SetPasswordForm(SetPasswordForm):
+    
+#     def __init__(self, *args, **kwargs):
+#         super(SetPasswordForm, self).__init__(*args, **kwargs)
+
+#     new_password1 = forms.CharField(
+#         widget=forms.PasswordInput(attrs={
+#             'name': 'new_password1',
+#             'type': 'password',
+#             'class': 'input',
+#             'id': 'new_password1',
+#             'required': '',
+#             }
+#         ),
+#     )
+#     new_password2 = forms.CharField(
+#         widget=forms.PasswordInput(attrs={
+#             'name': 'new_password2',
+#             'type': 'password',
+#             'class': 'input',
+#             'id': 'new_password2',
+#             'required': '',
+#             }
+#         ),
+#     )
+
+class SetPasswordForm(SetPasswordForm):
+    
+    def __init__(self, *args, **kwargs):
+        super(SetPasswordForm, self).__init__(*args, **kwargs)
+
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'name': 'new_password1',
+            'type': 'password',
+            'class': 'input',
+            'id': 'new_password1',
+            'required': '',
+            }
+        ),
+    )
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'name': 'new_password2',
+            'type': 'password',
+            'class': 'input',
+            'id': 'new_password2',
+            'required': '',
+            }
+        ),
+    )     
+
+
+
+class PasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordResetForm, self).__init__(*args, **kwargs)
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'name': 'email',
+            'type': 'text',
+            'class': 'input',
+            'id': 'email',
+            'required': '',
+            "autocomplete": "email"
+        }),
+    )
+
+    
+        
 

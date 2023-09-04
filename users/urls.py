@@ -10,6 +10,11 @@ urlpatterns = [
     path('logout/', views.custom_logout, name='logout' ),
     path('profilepage/', views.profilepage, name='profilepage' ),
     path('profilepageUpdate/', views.profilepageUpdate, name='profilepageUpdate' ),
+    path('activateEmail/<uidb64>/<token>/', views.activateEmail, name='activateEmail' ),
+    #path("changePassword/", views.changePassword, name="changePassword"),
+    path("passwordResetRequest/", views.passwordResetRequest, name="passwordResetRequest"),
+    path('passwordResetConfirm/<uidb64>/<token>/', views.passwordResetConfirm, name='passwordResetConfirm'),
+    
 
 ]
 

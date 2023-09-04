@@ -2,8 +2,8 @@ test@gmail.com
 test12345
 
 - yet to do the imppementation on the numbers
-- account verification 
-- reset password feature
+- account verification (email and password) ================== done
+- reset password feature  ============== done
 - download imppementation ============= done
 - fix search ============================= done
 - preview files ============ done *pdf
