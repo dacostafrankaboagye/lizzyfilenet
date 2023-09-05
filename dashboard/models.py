@@ -1,8 +1,5 @@
 
-
 from django.db import models
-
-
 
 MYFILETYPES = (
     ('pdf', 'pdf'),
@@ -18,10 +15,7 @@ the_code = {
     'audio' : ('warning', 'bi-file-earmark-music'),
     'video' : ('success', 'bi-file-earmark-play'),
     'other' : ('primary', 'bi-file-earmark')
-}
-
-
-    
+} 
 
 
 class MyFileManager(models.Model):
@@ -31,6 +25,8 @@ class MyFileManager(models.Model):
     my_file = models.FileField(upload_to="all_files")
     ids = models.AutoField(primary_key=True)
     file_upload_date =  models.DateTimeField(auto_now_add=True)
+    downloadCount = models.PositiveIntegerField(default=0, blank=True)
+    emailCount = models.PositiveIntegerField(default=0, blank=True)
 
     def __str__(self):
         return self.file_name
@@ -40,9 +36,13 @@ class MyFileManager(models.Model):
     
     def get_icon(self):
         return the_code[self.file_type][1]
+
+
     
     class Meta:
         ordering = ('-file_upload_date',)
+
+
 
     
 

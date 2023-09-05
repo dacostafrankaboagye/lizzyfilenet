@@ -1,0 +1,70 @@
+
+{% extends 'base/base_bootstrap.html' %}
+
+{% load static %}
+
+{% block title %} Information {% endblock %}
+
+{% block content %}
+
+    <nav class="navbar-first navbar  navbar-expand-lg bg-body-tertiary"  data-bs-theme='dark'>
+        <div class="container ">
+        <a class="navbar-brand" href="{% url 'dashboard-index' %}">
+            
+            <img src="{% static '/images/lizzylogo.PNG' %}" alt="logo" width="35" height="auto" class="d-inline-block align-text-top">Lizzy File Net
+
+        </a>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class='text-info'><i class="bi bi-person"></i></span>
+                {{ user.email }}
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'profilepage' %}">Profile Page</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                <!-- only for the admin  -->
+                {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+                <li><a class="dropdown-item" href="{% url 'admin_panel' %}">Admin Panel</a></li>
+                {% endif %}
+
+                </ul>
+            </li>
+            <li class="nav-item"> 
+                
+                <a class="nav-link" href="#">
+                    <span class='text-info'><i class="bi bi-question-circle"></i></span>
+                    Help
+                </a>
+            </li>
+            <ul>
+
+        </div>
+        </div>
+    </nav>
+
+    <div class="row my-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="border p-3 bg-white">
+                <h3> Message </h3>
+                <hr>
+                    {% if theErrorMessage != '' %}
+                        <div class="alert alert-danger">
+                            {{ theErrorMessage }}
+                        </div>
+            
+                    {% else %}
+                        <div class="container">
+                            <p> An Error Occured </p>
+                        </div> 
+                    {% endif %}  
+                <hr>   
+                <a class="btn btn-secondary btn-sm" href="{% url 'dashboard-index' %}">Back</a>
+                    
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

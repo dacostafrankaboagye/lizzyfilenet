@@ -18,5 +18,8 @@ urlpatterns = [
 
     path('preview/<pk>/', views.preview, name="preview"),
 
+    path('fileDownload/<pk>/', views.fileDownload, name="fileDownload"),
+    path('shareFile/<pk>/', views.shareFile, name="shareFile"),
+
     
 ]

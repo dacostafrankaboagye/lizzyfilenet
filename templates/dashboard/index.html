@@ -26,16 +26,21 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{the_file.my_file.url}}" download> <i class="bi bi-cloud-arrow-down-fill"></i> Download
+                                    <button class="nav-link" onclick="location.href='{% url 'fileDownload' the_file.ids %}' " > 
+                                        <i class="bi bi-cloud-arrow-down-fill"></i> 
+                                        <a href="{{ the_file.my_file.url }}" download="">
+                                            Download
+                                        </a>
                                         {% if user.is_authenticated and user.is_staff and user.is_superuser %}
-                                            <span> 6 </span>
+                                            <span> {{ the_file.downloadCount }} </span>
                                         {% endif %}
-                                    </a>
+
+                                    </buttton>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"> <i class="bi bi-share-fill"></i> Share
+                                    <a class="nav-link" href="{% url 'shareFile' the_file.ids %}"> <i class="bi bi-send-fill"></i> Share
                                         {% if user.is_authenticated and user.is_staff and user.is_superuser %}
-                                            <span> 12 </span>
+                                            <span> {{ the_file.emailCount }} </span>
                                         {% endif %}
                                     </a>
                                 </li>

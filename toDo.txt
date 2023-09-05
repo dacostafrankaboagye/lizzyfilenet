@@ -1,13 +1,15 @@
 test@gmail.com
 test12345
 
-- yet to do the imppementation on the numbers
+- fix download ================= done 
+- fix share ============= done
 - account verification (email and password) ================== done
 - reset password feature  ============== done
 - download imppementation ============= done
 - fix search ============================= done
 - preview files ============ done *pdf
-- send file through email
+- send file through email  =========== done 
 - fix delete(clear all files)
+- hide sensitives 
 
 
